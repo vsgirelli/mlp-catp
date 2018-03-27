@@ -18,12 +18,47 @@ df %>%
   select(quant);
 
 # 3 Como o exercício anterior, mas por iteração (Iteration) e processo (Rank).
+# Quantas iterações tem por processo
 
 df %>%
   select(Iteration, Rank) %>%
   group_by(Iteration, Rank) %>%
-  select(Rank, Iteration) %>%
   summarize(quant = n()) %>%
   group_by(quant) %>%
+  select(Rank, Iteration, quant) %>%
   summarize(med = mean(quant)) %>%
   select(quant);
+
+# Calcular o tempo médio da operação Stress para o processo 21 para cada iteração (Iteration)
+# Utilize a função mean para calcular a média.
+
+df %>%
+  filter(Operation == 'Stress', Rank == 21) %>%
+  select(Operation, Rank, Iteration, Time) %>%
+  group_by(Iteration) %>%
+  summarize(med = mean(Time));
+
+# Calcule o IPC (Instruções Por Ciclo = PAPI_TOT_CYC/PAPI_TOT_INS) por número de iteração
+# e por tipo de operação para cada processo, apresente somente os resultados da iteração 110.
+
+df %>%
+  mutate(IPC = PAPI_TOT_CYC/PAPI_TOT_INS) %>%
+  select(Rank, Iteration, Operation, IPC) %>%
+  group_by(Operation, Iteration) %>%
+  filter(Iteration == 110)
+
+
+
+
+
+
+
+
+
+# TODO verificar com o Schnorr se ele quer a média de cada um mesmo ou pode ser a média geral
+
+
+
+
+
+
