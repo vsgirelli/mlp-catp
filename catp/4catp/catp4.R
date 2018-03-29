@@ -1,6 +1,7 @@
 library(magrittr);
 library(readr);
 library(dplyr);
+library(ggplot2);
 
 df <- read_csv("ondes3d_1_ligurian_64_grisou-5.nancy.grid5000.fr_counter.csv");
 
@@ -16,8 +17,7 @@ df %>%
   # como é a mesma quantidade, quero mostrar um único resultado ao final
   # que representa a quantidade pra todos os casos
   group_by(quant) %>%
-  summarize(med = mean(quant)) %>%
-  select(med);
+  unique();
 
 # 3 Como o exercício anterior, mas por iteração (Iteration) e processo (Rank).
 # Quantas iterações tem por processo
@@ -37,7 +37,8 @@ df %>%
   filter(Operation == 'Stress', Rank == 21) %>%
   select(Operation, Rank, Iteration, Time) %>%
   group_by(Iteration) %>%
-  summarize(med = mean(Time));
+  summarize(med = mean(Time)) %>%
+  ggplot(aes(x=Iteration, y=med)) + geom_point();
 
 # 5 Calcule o IPC (Instruções Por Ciclo = PAPI_TOT_CYC/PAPI_TOT_INS) por número de iteração
 # e por tipo de operação para cada processo, apresente somente os resultados da iteração 110.
