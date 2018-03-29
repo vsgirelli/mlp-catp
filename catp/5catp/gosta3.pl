@@ -12,3 +12,5 @@ gosta(pedro,X) :- gosta(X,boliche). /* pedro gosta de quem gosta de boliche*/
 gosta(pedro,boliche).         /* Pedro gosta de boliche */
 gosta(pedro,X) :- gosta(X,X). /* Pedro gosta de qualquer um que goste de si mesmo */
 combina(X,Y,Z) :- gosta(X,Z), gosta(Y,Z). /* Existe algo (Z) que X e Y gostam? */
+
+% entra em loop porque pedro gosta de pedro, e a árvore de inferência fica crescendo

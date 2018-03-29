@@ -29,7 +29,8 @@ gosta(pedro,X) :- gosta(X,X). /* Pedro gosta de qualquer um que goste de si mesm
  * Depois que sai da árvore acima, vai para gosta(pedro, boliche), então boliche é uma resposta para a pergunta inicial.
  * Como todas as respostas válidas até aquele ponto foram encontradas, o motor de inferência retrocede
  * e vai para a próxima alternativa.
- * Quando chega em gosta(pedro,X) :- gosta(X,X), faz novamente uma árvora, mas entra em loop pois
+ * Quando chega em gosta(pedro,X) :- gosta(X,X), faz novamente uma árvore, mas entra em loop pois
  * verifica que pedro gosta de pedro (porque pedro gosta de boliche, e pedro gosta de todo mundo que gosta de boliche),
  * e vai encontrar novamente em gosta(pedro, X) :- gosta(X, X), criando nova árvore e etc...
+ * Sempre haverá uma resposta verdadeira para gosta(X,X), porque pedro gosta dele mesmo
  */
