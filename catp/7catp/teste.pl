@@ -5,7 +5,7 @@ imprime([H|T]) :- write(H),write(' '),imprime(T).
 concatenar([], L, L).
 concatenar([H|T], L, [H|D]) :- concatenar(T, L, D).
 inverte([], []).
-inverte([H|T], L) :- inverte(T, X), concatenar(X, [H], L)
+inverte([H|T], L) :- inverte(T, X), concatenar(X, [H], L).
 
 % Remove um elemento da lista
 remove(X, [X|T], T).
@@ -19,25 +19,20 @@ last(X,[X]).
    na cauda da lista */
 last(X,[_|L]) :- last(X,L).
 
-/insere ordenado/
+%/insere ordenado/
 insere_ordenado(X, [], [X]) :- !. 
 insere_ordenado(X, [H|T], [X|[H|T]]) :- X =< H, !. 
 insere_ordenado(X, [H|T], [H|Tf]) :- insere_ordenado(X, T, Tf).% Inverte uma Lista
-concatenar([], L, L).
-concatenar([H|T], L, [H|D]) :- concatenar(T, L, D).
-inverte([], []).
-inverte([H|T], L) :- inverte(T, X), concatenar(X, [H], L)
-
-% Remove um elemento da lista
-remove(X, [X|T], T).
-remove(X, [H|T], [H|T1]):- remove(X,T,T1).
 
 /* X e' o ultimo elemento, pois
    a lista contem um unico elemento */
 ultimo(X,[X]). 
 ultimo(X,[_|L]) :- ultimo(X,L).
 
-/insere ordenado/
+%/insere ordenado/
 insere(X, [], [X]) :- !. 
 insere(X, [H|T], [X|[H|T]]) :- X =< H, !. 
 insere(X, [H|T], [H|Tf]) :- insere(X, T, Tf).
+
+membro(Ele, [Ele| _]) :- !.
+membro(Ele, [_| Tail]) :- membro(Ele, Tail).
