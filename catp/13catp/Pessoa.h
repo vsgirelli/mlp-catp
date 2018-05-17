@@ -24,7 +24,9 @@ class Pessoa
     void setNome(string nome);
     void setSexo(string sexo);
     void setNascimento(int dia, int mes, int ano);
+    void setIdade(int idade);
     string getNome();
     string getSexo();
     int getIdade(); 
+    Data getNascimento();
 };
