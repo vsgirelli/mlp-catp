@@ -3,6 +3,10 @@
 
 using namespace std;
 
+Data::Data() 
+{
+}
+
 Data::Data(int dia, int mes, int ano)
 {
   if (dia >= 1 && dia <= 31) {
@@ -18,7 +22,6 @@ Data::Data(int dia, int mes, int ano)
 
 Data::~Data()
 {
-
 }
 
 int Data::getDia()

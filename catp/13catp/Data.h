@@ -9,6 +9,7 @@ class Data
   int checkDigits(int ano);
 
   public:
+  Data();
   Data(int dia, int mes, int ano);
   ~Data();
   int getDia();
