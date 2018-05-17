@@ -7,13 +7,17 @@ class Pessoa
 {
   private:
   string nome;
-  Data nascimento;
-  int ano;
-  int sexo;
+  string sexo;
+  Data *nascimento;
   int idade;
 
-  // se não declarar como públicos, dá erro pq considera direto como privado
   public:
   Pessoa();
   ~Pessoa();
+  void setNome(string nome);
+  void setSexo(string sexo);
+  void setNascimento(int dia, int mes, int ano);
+  string getNome();
+  string getSexo();
+  int getIdade(); 
 };

@@ -15,3 +15,33 @@ Pessoa::~Pessoa()
 {
   cout << __func__ << " sendo chamado" << endl;
 }
+
+string Pessoa::getNome()
+{
+  return nome;
+}
+
+string Pessoa::getSexo()
+{
+  return sexo;
+}
+
+int Pessoa::getIdade()
+{
+  // calcula idade com base na data atual
+}
+
+void Pessoa::setNascimento(int dia, int mes, int ano)
+{
+  nascimento = new Data(dia, mes, ano);
+}
+
+void Pessoa::setNome(string nome) 
+{
+  this->nome = nome;
+}
+
+void Pessoa::setSexo(string nome)
+{
+  this->sexo = sexo;
+}

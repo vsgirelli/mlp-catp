@@ -1,0 +1,16 @@
+1
+Só há desempilhamento quando a função retorna, portanto, até a linha 10, a pilha possui os seguintes RAs, na ordem:
+RA main: contém as variáveis automáticas char e, f, g, alocadas diretamente na pilha. Em VD e VE, como é o primeiro RA, ambos apontam para o início da pilha (no caso, o que fica alocado na pilha antes da primeira função?).
+RA fun2: contém as variáveis automáticas int b, c, alocadas diretamente na pilha. O VD aponta para o RA da função main (é o endereço de retorno, pois fun2 foi chamada pela main), enquanto que VE aponta para o escopo global (não sei se é assim que devo me referir), pois é o escopo onde a função foi definida.
+RA fun1: contém a variável automática float a, alocada diretamente na pilha. O VD aponta para o RA da função fun2 (é o endereço de retorno, pois fun1 foi chamada por fun2), enquanto que VE aponta para o escopo global, pois é o escopo onde a função foi definida.
+RA fun1: um novo RA é alocado para a nova chamada de função, e contém novamente a variável automática float a. O VD aponta para o RA da função fun1, enquanto que VE aponta para o escopo global.
+RA fun3: contém a variável automática float d, alocada diretamente na pilha. O VD aponta para o RA da função fun1 logo acima do RA da fun3 (é o endereço de retorno, pois fun3 foi chamada pela segunda chamada da função fun1), enquanto que VE aponta para o escopo global, pois é o escopo onde a função foi definida.
+
+
+2
+(Considerei que VD e VE ocupam CADA UM 4 bytes)
+RA main: 3 bytes (1 byte por cada char) + 8 bytes (VD e VE) + 8 bytes (estado)
+RA fun2: 8 bytes (4 bytes por cada int) + 8 bytes (VD e VE) + 8 bytes (estado)
+RA fun1: 4 bytes (float a) + 8 bytes (VD e VE) + 8 bytes (estado)
+RA fun1: 4 bytes + 8 bytes (VD e VE) + 8 bytes (estado)
+RA fun3:  4 bytes (float d) + 8 bytes (VD e VE) + 8 bytes (estado)
