@@ -1,0 +1,44 @@
+# tarefa 2
+Pro caso de herança múltipla:
+O python busca o método ou o atributo primeiro da classe que foi
+herdada antes, ou seja, left to right. 
+Portanto, no caso X(A, B), ao buscar um método/atributo, 
+antes é buscado na classe A, depois na classe B.
+Se for invertido, X(B, A), a forma de busca é a mesma,
+por isso antes é buscado em B e depois em A.
+
+Pro caso do problema do diamante:
+O method resolution order (MRO) é em profundidade, da esquerda pra direita.
+Portanto, no python antigo anterior ao 2.2, buscando em profundidade 
+da esquerda pra direita, ele encontraria as classes na seguinte ordem 
+(com D(B, C)), e B(A), C(A), A(object):
+D, B, A, C, A
+No entanto, no caso de herança diamante, poderia haver um caso em que
+o método é implementado em A, mas depois sobrescrito em C, sendo mais
+especializado. Buscando em depth-first left to right, o método chamado
+seria o de A, que não é o que se busca. Depois de várias inconsistências
+com diferentes algoritmos, o que o python faz hoje é preservar a ordem
+clássica de esquerda pra direita nas classes de nível logo acima, 
+respeitando regras tipo: se B herda de A, então B tem que ser verificado
+antes. Em caso de herança múltipla, se B(C,D), então B tem que ser verificado
+antes, depois C e depois D. 
+No exemplo:
+class A(object): pass
+class B(object): pass
+class X(A, B): pass
+class Y(B, A): pass
+class Z(X, Y): pass
+O código acima falharia, pois o algoritmo de RMO não conseguiria achar
+uma ordem que respeitasse todas as regras clássicas de herança.
+Portanto, a RMO do exemplo presente no .py em python se dá por:
+Fourth, Second, Third, First, object
+Para acessar os métodos de outras classes em ordem diferente do MRO:
+super(Third, four).foo()
+chama o método foo que está implementado na classe Third
+
+# tarefa 3
+Java tem métodos vinculados dinamicamente, enquanto c++, por prezar por
+eficiência, tem vinculação estática.
+
+
+
