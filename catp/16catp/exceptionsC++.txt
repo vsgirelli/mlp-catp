@@ -20,8 +20,16 @@ abordagem, a propagação e captura da exceção depende da profundidade do stac
 pois, diferente de Java, onde que a exceção deve ser tratada pela função 
 chamadora do método que gerou a exceção, em C++ não é obrigatório capturar a 
 exceção [2], e ela é propagada pelo stack [3].
-
-
+Quando uma exceção é lançada, um objeto do tipo exception é criado a partir do
+objeto que lançou a exceção. A partir disso, o compilador busca um catch em um 
+contexto acima no stack que possa lidar com a exceção. Se nenhum catch for
+encontrado, o sistema chama a função predefinida de run-time terminate. Se um
+catch for encontrado, seu parâmetro é inicializado e começa o processo de 
+subir no stack, que envolve chamar o destrutor de todos os objetos que foram
+criados e não foram destruídos entre o começo do bloco try que é associado ao
+catch em questão. Não é possível dar o controle do programa a um catch a partir
+de um goto, por exemplo, apenas com uma exceção sendo lançada [4].
 [1] http://www.cplusplus.com/doc/tutorial/exceptions/
 [2] https://hackernoon.com/error-handling-in-c-or-why-you-should-use-eithers-in-favor-of-exceptions-and-error-codes-f0640912eb45
 [3] https://www.cprogramming.com/tutorial/exceptions.html
+[4] https://msdn.microsoft.com/en-us/library/hh254939.aspx 
