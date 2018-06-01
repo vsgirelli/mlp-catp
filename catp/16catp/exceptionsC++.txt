@@ -1,0 +1,16 @@
+Assim como em várias outras linguagens orientadas a objeto, C++ possui os blocos
+try-catch. O bloco try envolve código que pode vir a lançar uma exceção, throw é
+o responsável por lançar a exceção, e catch é o handler responsável por tratar a
+exceção lançada. Desse modo, o controle do programa é passado para o catch que 
+captura a exceção. Em C++, um throw aceita apenas um parâmetro, que é passado 
+como argumento para o cath responsável. O tipo do parâmetro de um catch é 
+importante, uma vez que o parâmetro lançado pelo throw é comparado ao parâmetro 
+que o cath recebe. Mesmo que haja mais de um catch com parâmetro igual, por ex, 
+vários catches que aceitam um parâmetro do tipo int, apenas o primeiro trata a 
+exceção. Ainda pode haver um catch padrão indicado por catch(...), que captua 
+qualquer exceção. A execurção do programa continua após todo o bloco try-catch, 
+e não depois do throw.
+A biblioteca padrã do C++ possui uma classe específica para declarar objetos que 
+possam lançar exceções: exception. Essa classe tem um membro virtual chamado de
+what, que retorna uma sequência de caracteres, podendo ser sobrescrito em
+classes que herdam de exception.
