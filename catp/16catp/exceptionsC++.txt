@@ -9,8 +9,19 @@ que o cath recebe. Mesmo que haja mais de um catch com parâmetro igual, por ex,
 vários catches que aceitam um parâmetro do tipo int, apenas o primeiro trata a 
 exceção. Ainda pode haver um catch padrão indicado por catch(...), que captua 
 qualquer exceção. A execurção do programa continua após todo o bloco try-catch, 
-e não depois do throw.
+e não depois do throw [1].
 A biblioteca padrã do C++ possui uma classe específica para declarar objetos que 
 possam lançar exceções: exception. Essa classe tem um membro virtual chamado de
 what, que retorna uma sequência de caracteres, podendo ser sobrescrito em
-classes que herdam de exception.
+classes que herdam de exception. Há exceções já definidas nesta biblioteca [1].
+A implementação depende de compilador, e uma escolha possível é manter o código 
+do bloco try tão rápido quanto qualquer outro código. No entanto, nesta
+abordagem, a propagação e captura da exceção depende da profundidade do stack, 
+pois, diferente de Java, onde que a exceção deve ser tratada pela função 
+chamadora do método que gerou a exceção, em C++ não é obrigatório capturar a 
+exceção [2], e ela é propagada pelo stack [3].
+
+
+[1] http://www.cplusplus.com/doc/tutorial/exceptions/
+[2] https://hackernoon.com/error-handling-in-c-or-why-you-should-use-eithers-in-favor-of-exceptions-and-error-codes-f0640912eb45
+[3] https://www.cprogramming.com/tutorial/exceptions.html

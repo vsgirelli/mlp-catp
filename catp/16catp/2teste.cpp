@@ -14,11 +14,11 @@ class myexception: public exception
 int main () {
   try
   {
-    throw myex;
+    throw "coutld not open\n";
   }
-  catch (exception& e)
+  catch (int e)
   {
-    cout << e.what() << '\n';
+    cout << e << '\n';
   }
   return 0;
 }
